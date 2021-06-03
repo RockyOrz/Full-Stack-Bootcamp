@@ -1,0 +1,44 @@
+
+/* Element selector */
+p {
+  background-color: cornflowerblue;
+  border: 2px blue solid;
+  border-radius: 50px;
+  box-shadow: 5px 10px gray;
+  padding: 30px;
+  height: 100px;
+  width: 100px;
+  text-transform: uppercase;
+}
+
+/* Hover selector */
+p:hover{
+    transform: translate(5px, 10px);
+    box-shadow: none;
+    transition-duration: .3s;
+}
+
+/* Class selector */
+.someClass {
+  /* font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-style: italic;
+  font-weight: bold; 
+  background-color: green; */
+}
+
+/* ID selector */
+#paragraph {
+  /* margin: 25px; 
+  background-color: yellow; */
+}
+
+.blue{
+    background-color: blue;
+    border: 5px yellowgreen dashed;
+}
+
+.button{
+    background-color: lightblue;
+    margin: 5px;
+    padding: 5px;
+}

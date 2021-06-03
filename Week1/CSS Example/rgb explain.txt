@@ -1,0 +1,13 @@
+
+----------------------------------------------------------------
+Four attributes for stylesheet
+
+red:            0-255
+green:          0-255
+blue:           0-255
+Alpha:          0-1   (transparent)
+
+0,0,0           - black
+
+255,255,255     - White
+
