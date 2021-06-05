@@ -1,0 +1,108 @@
+/* apply to all elements */
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    background-color: #f6f6f6;
+}
+
+
+.container{
+    width: 1000px;
+    margin: 0 auto; /*top botton is 0, left right is auto*/
+
+}
+
+/*  */
+
+#header{
+    background-color: #376092;
+    color: #fff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+
+.site-name{
+    font-size: 22px;
+}
+
+.site-nav{
+    list-style: none;
+    float: right;
+}
+
+.site-nav li{
+    /* block-level new line */
+    display: inline-block; 
+}
+
+.site-nav li a{
+    color: #fff;
+    text-decoration: none; /* no underline for the links*/
+    display: block; /* make the anchor tag block level so it can auto adjust the padding ?? */
+    padding: 5px 10px;
+}
+
+.site-nav li a:hover{
+   background-color: #254061;
+   border-radius: 8px;
+}
+
+
+#banner{
+    background-color: #254061;
+    color: #fff;
+}
+
+#banner h1{
+    text-align: center;
+    font-size: 65px;
+    padding: 50px 0;
+}
+
+#content_section .content{
+    background-color: #fff;
+    padding: 20px;
+    min-height: 400px;
+}
+
+.row .item{
+    text-align: center;
+}
+
+.row .item h4{
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.btn{
+    background-color: #f58b34;
+    color: #fff;
+    padding: 10px 30px;
+    text-decoration: none; /* no underline for the links*/
+    display: inline-block;
+    border-radius: 13px;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.video-content{
+    margin: 50px 0 30px 0;
+    text-align: center;
+}
+
+
+#footer{
+    background-color: #376092;
+    padding: 20px 0;
+    color: #fff;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
