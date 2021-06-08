@@ -1,0 +1,164 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    background-color: #a8dadc;
+}
+
+.container{
+    width: 1200px;
+    margin: 0 auto;
+}
+
+#header{
+    width: 100%;
+    background-color: #1d3557;
+    color: #ffffff;
+}
+
+.scientist-name{
+    text-align: center;
+    font-size: 60px;
+}
+
+.content{
+    background-color: #f1faee;
+    border-radius: 20px;
+}
+
+.pic{
+    margin: 120px 0 120px 130px;
+    border-style: outset;
+    border-radius: 10px;
+    border-width: 4px;
+    box-shadow: rgb(117, 116, 116) 10px 15px;
+}
+
+/* #borderTop{
+    margin: auto auto 20px auto;
+    width: 250px;
+    border-top: 3px solid #1d3557;
+    
+} */
+
+/* #borderBottom{
+    margin: 40px auto auto auto;
+    width: 400px;
+    border-top: 3px solid #1d3557;
+    box-shadow: gray 1px 1px ;
+} */
+
+.personal_story{
+    float: right;
+    width: 500px;
+    margin: 120px 140px 0 0;
+    
+}
+
+.title_section p{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    font-size: 40px;
+    color: #457b9d;
+    margin: 0 0 20px 0;
+}
+
+.paragraph_section{
+    border: 2px solid #457b9d;
+    border-radius: 10px;
+    padding: 5px;
+    box-shadow: #457b9d 5px 5px;
+}
+
+#moreInfo{
+    background-color: transparent;
+    border: none; 
+}
+
+.paragraph_section:hover{
+    transform: translate(5px, 5px);
+    box-shadow: none;
+    transition-duration: .3s;
+}
+
+.paragraph_section p{
+    display: inline-block;
+    padding: 15px;
+    font-size: 20px;
+    text-align: justify;
+}
+
+.paragraph_section p span{
+    color: #e63946;
+}
+
+
+.banner{
+    margin-top: 50px;
+    width: 100%;
+    background-color: #1d3557;
+    color: #ffffff;
+    border-radius: 25px;
+}
+
+.banner p{
+    text-align: center;
+    font-size: 40px;
+    padding: 10px;
+}
+
+.event{
+    border-bottom: 3px solid #457b9d;
+    border-left: 10px solid #457b9d;
+    border-right: 3px solid #457b9d;
+    /* border-top: 3px solid #457b9d; */
+    border-radius: 20px;
+    margin-top: 2px;
+}
+
+.event .name{
+    display: inline-block;
+    margin: 25px;
+    font-size: 40px;
+}
+
+.event .location{
+    display: block;
+    margin-left: 70px;
+    margin-bottom: 30px;
+    font-size: 25px;
+}
+
+.event .date{
+    display: block;
+    margin-left: 70px;
+    margin-bottom: 40px;
+    font-size: 25px;
+}
+
+
+.table{
+    margin-top: 50px;
+    margin-bottom: 300px;
+}
+
+#article_name{
+    margin-top: 30px;
+    font-size: 40px;
+}
+
+#article_content{
+    text-align: justify;
+}
+
+
+#footer{
+    background-color: #1d3557;
+    padding: 20px 0;
+    color: #fff;
+  
+}

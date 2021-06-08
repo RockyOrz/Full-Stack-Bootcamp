@@ -1,0 +1,11 @@
+h1{
+    background-color: black;
+    color: white;
+}
+
+/* If the browser window is 600px or smaller, the background color will be lightblue: */
+@media only screen and (max-width: 600px) {
+    h1 {
+      background-color: lightblue;
+    }
+  }
