@@ -1,0 +1,27 @@
+body{
+    display: grid;
+    height: 100vh;
+
+    /* first col is twice as big as second col (fraction) */
+    /* grid-template-columns: 2fr 1fr;   */
+
+    grid-template-columns: 5fr, minmax(auto, 1fr);
+}
+
+.div{
+    height: 100vh;
+    width: 100vh;
+}
+
+.div #a{
+    background-color: aqua;
+}
+.div #b{
+    background-color: cadetblue;
+}
+.div #c{
+    background-color: bisque;
+}
+.div #d{
+    background-color: chartreuse;
+}
