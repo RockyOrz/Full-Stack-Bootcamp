@@ -1,0 +1,16 @@
+#menuToggle{
+    cursor: pointer;
+}
+
+#menuToggle, #slidingPane{
+    text-align: center;
+    background-color: #000000;
+    border: #707070 1px solid;
+    color: #FFFFFF;
+    padding: 5px;
+}
+
+#slidingPane{
+    padding: 75px; 
+    display: none;
+}

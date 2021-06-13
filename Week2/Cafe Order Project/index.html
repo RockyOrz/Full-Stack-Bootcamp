@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <form class="form-control">
+        <div class="mb-3">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Please enter your name" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Which coffee would you like to order?</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="coffeeType" value="turkish" required>
+                <label class="form-check-label" for="coffeeType">
+                    Turkish coffee $3
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="coffeeType" value="american">
+                <label class="form-check-label" for="coffeeType">
+                    American coffee $5
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="coffeeType" value="iced_latte">
+                <label class="form-check-label" for="coffeeType">
+                    Iced latte $7
+                </label>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label>Do you need any extras?</label>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="extras" value="extra_coffee">
+                <label class="form-check-label" for="extras">
+                    Extra coffee $1.5
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="extras" value="whipped_cream">
+                <label class="form-check-label" for="extras">
+                    Whipped cream $2
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="extras" value="extra_caramel">
+                <label class="form-check-label" for="extras">
+                    Extra caramel $3
+                </label>
+            </div>
+        </div>
+
+        <button type='button' class="btn btn-primary" id="orderBtn">Place Order</button>
+
+    </form>
+
+    <div id="result"></div>
+
+
+    <script src="" async defer></script>
+</body>
+
+
+
+<script src="script.js" async defer></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+
+</html>
