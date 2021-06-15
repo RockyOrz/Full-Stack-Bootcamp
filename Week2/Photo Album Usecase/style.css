@@ -1,0 +1,27 @@
+h1 {
+    color: black;
+    text-align: center;
+}
+
+p {
+    font-family: verdana;
+    font-size: 20px;
+}
+
+.navbar{
+    background-color: #3c096c;
+}
+
+.jumbotron{
+    background-color: #f8f9fa;
+
+}
+
+.container{
+    background-color: #f8f9fa;
+}
+
+.homeImg{
+    height: 100%;
+    width: 80%;
+}
