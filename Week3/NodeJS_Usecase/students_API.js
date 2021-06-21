@@ -1,17 +1,23 @@
 const Student_manage = require("./stud_manage");
 const express = require("express");
 const app = express();
+let request = 0;
 
 //Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use((req, res, next) => {
+  request++;
+  console.log(`Received a ${req.method} request, total is ${request}`);
+  next();
+});
 
 var studentList = [
-  { id: 1, name: "Andy", section: "1", gpa: 3.5, nationality: "Canada" },
-  { id: 2, name: "Brady", section: "2", gpa: 3.0, nationality: "Canada" },
-  { id: 3, name: "Cindy", section: "1", gpa: 3.7, nationality: "US" },
-  { id: 4, name: "Daby", section: "2", gpa: 3.3, natonality: "Canada" },
-  { id: 8, name: "Frank", section: "1", gpa: 3.7, natonality: "US" },
+  { id: "1", name: "Andy", section: "1", gpa: "3.5", nationality: "Canada" },
+  { id: "2", name: "Brady", section: "2", gpa: "3.0", nationality: "Canada" },
+  { id: "3", name: "Cindy", section: "1", gpa: "3.7", nationality: "US" },
+  { id: "4", name: "Daby", section: "2", gpa: "3.3", natonality: "Canada" },
+  { id: "8", name: "Frank", section: "1", gpa: "3.7", natonality: "US" },
 ];
 
 // Create Students Class
@@ -28,17 +34,27 @@ app.get("/", (req, res) => {
   if (result != null) {
     res.send(result);
   } else {
-    return "No students found";
+    return "No student found";
   }
 });
 
-// Get a student
-app.get("/:id", (req, res) => {
-  let result = students.get(req.params.id);
+// Get a student by id
+app.get("/id/:id", (req, res) => {
+  let result = students.getByID(req.params.id);
   if (result != null) {
     res.send(result);
   } else {
-    return "Student not found";
+    return "No student found";
+  }
+});
+
+//Get a student by section
+app.get("/section/:section", (req, res) => {
+  let result = students.getBySection(req.params.section);
+  if (result != null) {
+    res.send(result);
+  } else {
+    return "No student found";
   }
 });
 

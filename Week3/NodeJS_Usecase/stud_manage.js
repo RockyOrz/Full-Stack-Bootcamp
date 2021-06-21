@@ -10,18 +10,28 @@ class Students_manage {
   }
 
   showAll() {
-    let filtered = this.students.filter((student) => {
+    let studentList = this.students;
+    let filtered = studentList.filter((student) => {
       return student != null;
     });
     return filtered;
   }
 
-  get(id) {
+  getByID(id) {
     return this.students[id - 1] != null ? this.students[id - 1] : null;
   }
 
+  getBySection(section) { 
+    let studentList = this.students;
+    let filterd = studentList.filter((student) => {
+      return student != null && parseInt(student.section) === section;
+    });
+    return filterd != null? filterd : null;
+    
+  }
+
   update(student) {
-    this.students[student.id - 1] != null
+    return this.students[parseInt(student.id) - 1] != null
       ? (this.students[student.id - 1] = student)
       : null;
   }
