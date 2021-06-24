@@ -68,28 +68,6 @@ app.get("/filter", (req, res) => {
     });
 });
 
-// app.get('/gender/:gender', (req, res) => {
-//     let sql = `SELECT * FROM stud_info WHERE gender = '${req.params.gender}'`;
-//     conn.query(sql, (err, result) => {
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             res.send(result);
-//         }
-//     });
-// });
-
-// app.get('/departID/:departmeng_id', (req, res) => {
-//     let sql = `SELECT * FROM stud_info WHERE depart_id = '${req.params.departmeng_id}'`;
-//     conn.query(sql, (err, result) => {
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             res.send(result);
-//         }
-//     });
-// });
-
 app.post("/", (req, res) => {
     let sql = `INSERT INTO stud_info (first_name, last_name, age, gender, gpa, depart_id) VALUES ('${req.body.first_name}', '${req.body.last_name}', ${req.body.age}, '${req.body.gender}', '${req.body.gpa}', ${req.body.department_id})`;
     conn.query(sql, (err, result) => {
