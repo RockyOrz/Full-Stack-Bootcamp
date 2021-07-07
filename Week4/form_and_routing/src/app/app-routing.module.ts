@@ -6,12 +6,13 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { StudentsComponent } from './components/students/students.component';
 import { TeachersComponent } from './components/teachers/teachers.component';
 import { AddStudentComponent } from './components/add-student/add-student.component';
+import { StudentComponent } from './components/student/student.component';
 
 const routes: Routes = [
   {path: 'mdf', component: ModelDrivenFormComponent},
   {path: 'students', component: StudentsComponent},
   {path: 'add-student', component: AddStudentComponent},
-  {path: 'students/:id', component: StudentsComponent},
+  {path: 'student/:id', component: StudentComponent},
   {path: 'teachers', component: TeachersComponent},
   {path: '**', component: NotFoundComponent},
 ];

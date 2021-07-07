@@ -5,16 +5,16 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class StudentService {
-  private apiURL = 'http://localhost:3000/';
+  private apiURL = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {}
 
-  getStudent() {
+  getStudents() {
     return this.http.get(this.apiURL);
   }
-
-  getDepartments() {
-    return this.http.get(this.apiURL + '/departments');
+  
+  getStudent(id: number) {
+    return this.http.get(this.apiURL + `/${id}`);
   }
 
   createStudent(student: object) {
@@ -23,5 +23,9 @@ export class StudentService {
 
   deleteStudent(studentId: number) {
     return this.http.delete(this.apiURL + studentId);
+  }
+
+  getDepartments() {
+    return this.http.get(this.apiURL + '/department')
   }
 }

@@ -29,7 +29,10 @@
 
     <div>
         <label for="depart_id">Department</label>
-        <input type="number" formControlName="depart_id">
+        <select formControlName="depart_id">
+            <option *ngFor="let department of departments" [value]="department.id">{{department.title}}</option>
+
+        </select>
     </div>
 
     <button type="button" [disabled]="studentForm.invalid" (click)="onSubmit()">Add Student</button>

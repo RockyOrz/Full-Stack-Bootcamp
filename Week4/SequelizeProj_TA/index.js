@@ -61,7 +61,7 @@ app.get("/depatment", (req, res) => {
 
 // Return a studnet by ID
 app.get("/:id", (req, res) => {
-  Student.findByPk().then((result) => {
+  Student.findByPk(req.params.id).then((result) => {
     res.send(result);
   }).catch((err) => {
     res.status(400).send(err);

@@ -10,6 +10,7 @@ import { StudentService } from 'src/app/services/student.service';
 export class AddStudentComponent implements OnInit {
 
   studentForm;
+  departments: any;
 
   constructor(private builder: FormBuilder, private studentService: StudentService) {
     this.studentForm = builder.group({
@@ -20,6 +21,11 @@ export class AddStudentComponent implements OnInit {
       gender: ['', [Validators.required]],
       depart_id: ['', [Validators.required]],
     });
+
+    this.studentService.getDepartments().subscribe((result) => {
+      this.departments = result;
+    });
+
   }
 
   ngOnInit(): void {

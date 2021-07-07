@@ -16,7 +16,7 @@ export class StudentsComponent implements OnInit {
       console.log(param.get('id'));
     });
 
-    this.studentService.getStudent().subscribe((students) => {
+    this.studentService.getStudents().subscribe((students) => {
       this.students = students;
     });
   }

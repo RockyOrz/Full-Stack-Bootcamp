@@ -1,5 +1,7 @@
 <p>students works!</p>
 
 <div *ngFor="let student of students">
-    <p>{{ student.first_name }} {{ student.last_name }}</p>
+  <a [routerLink]="['/student', student.id]"
+    ><p>{{ student.first_name }} {{ student.last_name }}</p></a
+  >
 </div>
