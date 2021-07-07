@@ -1,2 +1,9 @@
-<h1>Hello World {{title}}</h1>
-<app-student></app-student>
+<h1>Hello World</h1>
+<button type="button" (click)="currentTab = 'student'">Student Info</button>
+<button type="button" (click)="currentTab = 'department'">Department Info</button>
+
+<div [ngSwitch]="currentTab">
+    <app-student *ngSwitchCase="'student'"></app-student>
+    <app-department *ngSwitchCase="'department'"></app-department>
+    <p appCustom *ngSwitchDefault>Choose one above (directives is using)</p>
+</div>

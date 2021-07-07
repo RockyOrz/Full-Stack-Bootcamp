@@ -1,1 +1,71 @@
-<p>student works! {{name}}</p>
+<h2>Student Information</h2>
+<p>Adminstrator: {{name}}</p>
+
+<!-- Interpolation {{}} and For loop in array -->
+<div *ngFor= "let student of students">{{ student.name }}</div>
+
+<!-- property binding -->
+<!-- adding bracket for a property and it would receive binding variable name -->
+<img [src]="imageURL" width="80%" height=auto alt="Image missing"><br>
+<a [href]="url">Go to Google</a><br>
+
+<!-- event binding -->
+<button type="button" (click)="onClick()">Click me</button>
+
+<!-- attribute binding -->
+<table> 
+    <caption>Student Table</caption>
+    <tr>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Age</th>
+    </tr>
+    <tr *ngFor="let student of students">
+        <th>{{ student.name }}</th>
+        <th>{{ student.gender }}</th>
+        <th [attr.colspan]="cols">{{ student.age }}</th>
+    </tr>
+
+</table>
+
+<!-- CSS Class binding -->
+<!-- Using two classes to change background color-->
+<p [class]="bgClass">CSS Class binding</p>
+<!-- Set class text-color to false to make it invisible -->
+<p [class.text-color]="isInvisiable">Text Color Class Binding</p>
+<button type="button" (click)="blueClick()">Blue</button>
+<button type="button" (click)="redClick()">Red</button>
+
+
+<!-- CSS class binding: second line ignore the noraml class attribute  -->
+<h1 class="change-italic">This text is italic</h1>
+<h1 class="change-italic" [class]="CorrectText">This text is correct and italic</h1>
+
+
+<!-- CSS Style binding -->
+<p [style.background-color]="bgColor">CSS style binding</p>
+
+
+<!-- Built-in directives: NgClass, NgStyle, NgModel -->
+<!-- Built-in directives are class used to add additional behacior to elemtns in angular applications -->
+<!-- ngClass -->
+<p [ngClass]="{'blue-color': !isInvisiable, 'red-color': isInvisiable}">ngClass bingding</p>
+<!-- ngStyle -->
+<p [ngStyle]="{'background-color': bgColor, color: 'white'}">ngStyle binding</p>
+
+
+<!-- Two binding -->
+<div>
+    <label for="studentName">Enter your name</label>
+    <input type="text" [(ngModel)]="studentName"><br>
+    {{studentName}}
+</div>
+
+
+<!-- ngIf and ng-template-->
+<p *ngIf="showBox; else content_hidden">Show Box</p>
+<ng-template #content_hidden>
+    <p>content is hidden</p>
+</ng-template>
+
+<button type="button" (click)="toggleVisibility()">Toggle</button>

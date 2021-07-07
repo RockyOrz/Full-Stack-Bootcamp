@@ -1,0 +1,5 @@
+<div class="list-group">
+    <a [routerLink]="['/books', book.id]" class="list-group-item list-group-item-action" *ngFor="let book of bookList">
+        {{book.name}}
+    </a>
+</div>

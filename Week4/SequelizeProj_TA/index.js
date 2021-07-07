@@ -2,10 +2,14 @@ const express = require("express");
 const app = express();
 const sequelize = require("./Configuration/config");
 const Student = require("./Models/Student");
+const Department = require("./Models/Department");
+const cors = require("cors");
 
 const port = 3000;
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(cors());
 
 sequelize
   .authenticate()
@@ -16,7 +20,7 @@ sequelize
     console.error(err);
   });
 
-app.get("", (req, res) => {
+app.get("/", (req, res) => {
   Student.findAll()
     .then((result) => {
       res.send(result);
@@ -26,23 +30,42 @@ app.get("", (req, res) => {
     });
 });
 
-// Using WHERE clause in SQL query
-app.get("/filter", (req, res) => {
-  let data = {
-    where: {
-      gender: req.query.gender,
-      depart_id: req.query.depart_id,
-    },
-    attributes: ["first_name", "last_name", "gender", "depart_id"],
-  };
-
-  Student.findAll(data)
+app.get("/depatment", (req, res) => {
+  Department.findAll()
     .then((result) => {
       res.send(result);
     })
     .catch((err) => {
       res.status(400).send(err);
     });
+});
+
+// // Using WHERE clause in SQL query
+// app.get("/filter", (req, res) => {
+//   let data = {
+//     where: {
+//       gender: req.query.gender,
+//       depart_id: req.query.depart_id,
+//     },
+//     attributes: ["first_name", "last_name", "gender", "depart_id"],
+//   };
+
+//   Student.findAll(data)
+//     .then((result) => {
+//       res.send(result);
+//     })
+//     .catch((err) => {
+//       res.status(400).send(err);
+//     });
+// });
+
+// Return a studnet by ID
+app.get("/:id", (req, res) => {
+  Student.findByPk().then((result) => {
+    res.send(result);
+  }).catch((err) => {
+    res.status(400).send(err);
+  })
 });
 
 app.post("/", (req, res) => {
