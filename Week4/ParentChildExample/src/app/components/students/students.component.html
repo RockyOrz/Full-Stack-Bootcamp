@@ -1,0 +1,9 @@
+<h2>Students</h2>
+<ul>
+  <li *ngFor="let student of students">
+    {{ student.name }}
+  </li>
+</ul>
+<app-undergrads [undergradsList]="this.getUndergrads()" (sendInfoEvent)="info = $event" (deleteStudentEvent)="deleteStudent($event)"></app-undergrads>
+<input type="text" [(ngModel)]="textbox"/>
+{{info}}

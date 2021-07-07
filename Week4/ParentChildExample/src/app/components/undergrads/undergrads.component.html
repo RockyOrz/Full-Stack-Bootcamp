@@ -1,0 +1,8 @@
+<h3>Undergrads under Students</h3>
+<ul>
+    <li *ngFor="let student of undergradsList">
+      {{ student.name }}
+      <button (click)="sendInfo()">Send Message</button>
+      <button (click)="deleteStudent(student)">Delete Student</button>
+    </li>
+  </ul>

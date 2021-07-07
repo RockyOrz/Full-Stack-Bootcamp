@@ -1,0 +1,37 @@
+<form [formGroup]="studentForm">
+    <div>
+        <label for="first_name">First_name</label>
+        <input type="text" formControlName="first_name">
+    </div>
+
+    <div>
+        <label for="last_name">Last_name</label>
+        <input type="text" formControlName="last_name">
+    </div>
+
+    <div>
+        <label for="age">Age</label>
+        <input type="number" formControlName="age">
+    </div>
+
+    <div>
+        <label for="gpa">GPA</label>
+        <input type="number" formControlName="gpa">
+    </div>
+
+    <div>
+        <label for="gender">Gender</label>
+        <select formControlName="gender">
+            <option value="male">male</option>
+            <option value="female">female</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="depart_id">Department</label>
+        <input type="number" formControlName="depart_id">
+    </div>
+
+    <button type="button" [disabled]="studentForm.invalid" (click)="onSubmit()">Add Student</button>
+
+</form>

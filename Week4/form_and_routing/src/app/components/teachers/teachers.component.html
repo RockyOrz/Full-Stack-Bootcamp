@@ -1,0 +1,11 @@
+<p>teachers works!</p>
+
+<div *ngFor="let student of students">
+    <app-student [student]="student" (onSubmitEvent)="homework = $event"></app-student>
+</div>
+
+<div *ngIf="homework">
+    {{homework}}
+</div>
+
+

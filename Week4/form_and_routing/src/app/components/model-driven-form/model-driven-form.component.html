@@ -1,0 +1,30 @@
+<h1>model-driven-form</h1>
+
+<form [formGroup]="studentForm">
+  <div>
+    <label for="firstName">First name</label>
+    <input type="text" formControlName="firstName" />
+
+    <!-- {{ studentForm.get("firstName")?.dirty }} -->
+    <span *ngIf="firstNameControl.touched && firstNameControl.errors?.required"
+      >This is a requried field</span
+    >
+    <span *ngIf="firstNameControl.touched && firstNameControl.errors?.minlength"
+      >There must be at least 3 characters</span
+    >
+  </div>
+
+  <div>
+    <label for="lastName">Last name</label>
+    <input type="text" formControlName="lastName" />
+  </div>
+
+  <div>
+    <label for="email">email</label>
+    <input type="email" formControlName="email" />
+  </div>
+
+  <button type="button" (click)="onSubmit()" [disabled]="studentForm.invalid">
+    Submit
+  </button>
+</form>
