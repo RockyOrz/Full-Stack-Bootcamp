@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> All Tasks</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-card *ngFor="let task of tasks" color="success" class="task">
+    <ion-card-header>
+      <ion-card-subtitle>{{ task.category }}</ion-card-subtitle>
+      <ion-card-title>{{ task.title }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <h4>Date: {{ task.task_date | date }}</h4>
+      <h4>Priority: {{ task.priority_level }}</h4>
+      <h4>Progress: {{ task.progress_level }}</h4>
+      <p>{{ task.description }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

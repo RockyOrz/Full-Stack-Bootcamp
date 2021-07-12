@@ -28,7 +28,7 @@ const Student = config.define('student', {
         type: Sequelize.DOUBLE,
         allowNull: false
     },
-    depart_id: {
+    department_id: {
         type: Sequelize.INTEGER,
         allowNull: false
     },

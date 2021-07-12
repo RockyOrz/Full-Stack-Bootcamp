@@ -1,6 +1,0 @@
-{
-	"appId": "ca.fullstack.rocky.myApp",
-	"appName": "myApp",
-	"webDir": "www",
-	"bundledWebRuntime": false
-}

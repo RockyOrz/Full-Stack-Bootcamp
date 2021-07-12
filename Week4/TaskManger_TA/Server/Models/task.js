@@ -21,11 +21,11 @@ const Task = config.define('task', {
         allowNull: false
     },
     priority_level: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false
     },
     progress_level: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false
     },
     task_date: {

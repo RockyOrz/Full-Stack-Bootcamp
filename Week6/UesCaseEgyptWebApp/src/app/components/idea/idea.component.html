@@ -1,0 +1,111 @@
+<div class="container">
+  <form [formGroup]="shareIdeaForm">
+    <span
+      *ngIf="
+        shareIdeaForm.get('name')?.touched &&
+        shareIdeaForm.get('name')?.errors?.required
+      "
+    >
+      Please enter your name
+    </span>
+
+    <span
+      *ngIf="
+        shareIdeaForm.get('name')?.touched &&
+        !shareIdeaForm.get('name')?.errors?.required &&
+        shareIdeaForm.get('name')?.errors?.minlength
+      "
+    >
+      Your name must be more than 2 characters
+    </span>
+
+    <span
+      *ngIf="
+        shareIdeaForm.get('name')?.touched &&
+        !shareIdeaForm.get('name')?.errors?.required &&
+        !shareIdeaForm.get('name')?.errors?.minlength &&
+        shareIdeaForm.get('name')?.errors?.prohibited
+      "
+    >
+      Your name cannot contain the word tourist
+    </span>
+
+    <div>
+      <label for="userName"> Name </label><br>
+      <input type="text" id="userName" formControlName="name" />
+    </div>
+
+    <br />
+
+    <span
+      *ngIf="
+        shareIdeaForm.get('email')?.touched &&
+        shareIdeaForm.get('email')?.errors?.required
+      "
+    >
+      Please enter your email
+    </span>
+
+    <div>
+      <label for="userEmail"> Email </label><br>
+      <input type="emial" id="userEmail" formControlName="email" />
+    </div>
+
+    <br />
+
+    <span
+      *ngIf="
+        shareIdeaForm.get('targetCity')?.touched &&
+        shareIdeaForm.get('targetCity')?.errors?.required
+      "
+    >
+      Please choose a city
+    </span>
+
+    <div> 
+      <label for="targetCity"> City </label><br>
+      <select id="targetCity" formControlName="targetCity">
+        <option [value]=city *ngFor="let city of cities">
+          {{ city }}
+        </option>
+      </select>
+    </div>
+
+    <br />
+
+    <span
+      *ngIf="
+        shareIdeaForm.get('description')?.touched &&
+        shareIdeaForm.get('description')?.errors?.required
+      "
+    >
+      Please write the description
+    </span>
+
+    <span
+      *ngIf="
+        shareIdeaForm.get('description')?.touched &&
+        !shareIdeaForm.get('description')?.errors?.required &&
+        shareIdeaForm.get('description')?.errors?.maxLength
+      "
+    >
+      Description cannot has more than 1000 characters
+    </span>
+
+    <div>
+      <label for="brief"> Description </label><br>
+      <textarea rows="4" cols="50" id="brief" formControlName="description">
+      </textarea>
+    </div>
+
+    <br />
+
+    <button
+      type="submit" class="btn btn-primary"
+      [disabled]="shareIdeaForm.invalid"
+      (click)="onSubmit()"
+    >
+      Submit
+    </button>
+  </form>
+</div>

@@ -1,9 +1,9 @@
 export interface Task {
     title: string;
     description: string;
-    task_date: Date;
-    task_time: Date;
-    priority_level: number;
     category: string;
+    priority_level: number;
     progress_level: number;
+    task_date: Date;
 }
+

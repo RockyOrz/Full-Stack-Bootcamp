@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Add Task
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="taskForm">
+
+    <ion-item *ngIf="titleFormControl.touched && titleFormControl.errors?.required" color="danger">
+      This is a required field.
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Title</ion-label>
+      <ion-input formControlName="title"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Description</ion-label>
+      <ion-textarea formControlName="description"></ion-textarea>
+    </ion-item>
+
+    <ion-item *ngIf="categoryFormControl.touched && categoryFormControl.errors?.required" color="danger">
+      This is a required field.
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Category</ion-label>
+      <ion-input formControlName="category"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Date</ion-label>
+      <ion-input type="date" formControlName="task_date"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>priority_level</ion-label>
+      <ion-select placeholder="Select a priority level" formControlName="priority_level">
+        <ion-select-option value="low">Low</ion-select-option>
+          <ion-select-option value="medium">Medium</ion-select-option>
+          <ion-select-option value="high">High</ion-select-option>
+      </ion-select>
+    </ion-item> 
+
+    <ion-item>
+      <ion-label>progress_level</ion-label>
+      <ion-select placeholder="Select a progress level" formControlName="progress_level">
+        <ion-select-option value="pending">Pending</ion-select-option>
+          <ion-select-option value="started">Started</ion-select-option>
+          <ion-select-option value="completed">Completed</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button color="primary" [disabled]="taskForm.invalid" (click)="onSubmit()">Add My Task</ion-button>
+
+  </form>
+
+</ion-content>
