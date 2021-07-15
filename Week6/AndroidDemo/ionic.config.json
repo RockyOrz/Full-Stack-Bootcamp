@@ -1,0 +1,8 @@
+{
+  "name": "AndroidDemo",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}
