@@ -21,7 +21,7 @@ sequelize
   });
 
 app.get("/", (req, res) => {
-  Student.findAll()
+  Task.findAll()
     .then((result) => {
       res.send(result);
     })

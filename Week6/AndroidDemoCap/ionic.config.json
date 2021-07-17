@@ -1,0 +1,7 @@
+{
+  "name": "AndroidDemoCap",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
