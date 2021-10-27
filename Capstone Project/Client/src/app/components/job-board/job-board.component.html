@@ -1,0 +1,288 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-lg">
+    <a class="navbar-brand" href="#">
+      <img
+        class="brand-img"
+        src="../../../assets/welcome/brand.png"
+        alt="Image not found"
+      />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="job-board">Job Posting</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="*">Company Review</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="*">Find Salaries</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <div class="container-job-board">
+        <div class="list-group">
+          <a
+            *ngFor="let job of showed_jobs"
+            class="list-group-item list-group-item-action"
+            type="button"
+            (click)="show_detail(job)"
+          >
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{ job.title }}</h5>
+              <small>{{ get_days_between(job.createdAt) }} days ago</small>
+            </div>
+            <p>{{ capitalize(job.location) }}</p>
+            <strong>{{ capitalize(job.company_name) }}</strong>
+            <p class="my-2">{{ get_brief_description(job.description) }}</p>
+          </a>
+        </div>
+      </div>
+
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          <li *ngIf="!first_page" class="page-item">
+            <a
+              type="button"
+              class="page-link"
+              (click)="change_to_previous_page()"
+              tabindex="-1"
+              >Previous</a
+            >
+          </li>
+          <li *ngFor="let page_number of page_iterations" class="page-item">
+            <a class="page-link" (click)="change_page(page_number)">{{
+              page_number
+            }}</a>
+          </li>
+
+          <li *ngIf="!last_page" class="page-item">
+            <a type="button" class="page-link" (click)="change_to_next_page()"
+              >Next</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div *ngIf="show_job_detail" class="col-6">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{ job_detail.title }}</h5>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="check_application_exist()"
+        >
+          Apply
+        </button>
+      </div>
+      <p>{{ capitalize(job_detail.location) }}</p>
+      <strong>{{ capitalize(job_detail.company_name) }}</strong>
+      <p class="my-2">{{ job_detail.description }}</p>
+    </div>
+  </div>
+</div>
+
+<!-- form that let applicant to fill in information -->
+<button
+  #apply_form
+  type="button"
+  data-bs-toggle="modal"
+  data-bs-target="#apply_form"
+></button>
+
+<div
+  class="modal fade"
+  id="apply_form"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Apply a job</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="application_form">
+          <div class="mb-3">
+            <label for="highest_educational_level" class="form-label"
+              ><strong>Highest Educational level</strong></label
+            >
+            <input
+              type="email"
+              class="form-control"
+              id="highest_educational_level"
+              formControlName="highest_educational_level"
+              placeholder="{{applicant?.highest_educational_level}}"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="educational_insititute" class="form-label"
+              ><strong>Educational Insititute</strong></label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="educational_insititute"
+              formControlName="educational_insititute"
+              placeholder="{{applicant?.educational_insititute}}"
+
+            />
+          </div>
+          <div class="mb-3">
+            <label for="professional_field" class="form-label"
+              ><strong>Professional Field</strong></label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="professional_field"
+              formControlName="professional_field"
+              placeholder="{{applicant?.professional_field}}"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="years_professional_exprience" class="form-label"
+              ><strong>Years Professional Exprience</strong></label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="years_professional_exprience"
+              formControlName="years_professional_exprience"
+              placeholder="{{applicant?.years_professional_exprience}}"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="resume" class="form-label"
+              ><strong>Upload your resume</strong></label
+            >
+            <input
+              type="file"
+              class="form-control"
+              id="resume"
+              (change)="on_file_change($event)"
+            >
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-success"
+          (click)="apply_job()"
+          data-bs-dismiss="modal"
+          [disabled]="application_form.invalid"
+        >
+          Apply
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- success msg and application duplicate msg -->
+<button
+  #aply_success
+  type="button"
+  data-bs-toggle="modal"
+  data-bs-target="#success_msg"
+></button>
+
+<button
+  #aply_duplicate
+  type="button"
+  data-bs-toggle="modal"
+  data-bs-target="#duplicate_msg"
+></button>
+
+<div
+  class="modal fade"
+  id="success_msg"
+  aria-hidden="true"
+  tabindex="-1"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Congratulations!</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        You have been successfully applied to this job
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">
+          got it
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="duplicate_msg"
+  aria-hidden="true"
+  tabindex="-1"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Warning</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">You have applied this job already</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Got it
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>To Do List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-card *ngFor="let task of toDoList">
+    <ion-card-header>
+      <ion-card-subtitle>{{task.name}}</ion-card-subtitle>
+      <ion-card-title>{{task.description}}</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      {{task.status}}
+    </ion-card-content>
+  </ion-card>
+</ion-content> 

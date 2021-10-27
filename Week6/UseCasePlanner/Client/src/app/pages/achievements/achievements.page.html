@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Achievements</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content *ngFor="let task of completedTasks">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>{{task.name}}</ion-card-subtitle>
+      <ion-card-title>{{task.description}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{task.status}}
+    </ion-card-content>
+  </ion-card>
+</ion-content> 

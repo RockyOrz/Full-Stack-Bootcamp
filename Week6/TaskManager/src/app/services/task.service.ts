@@ -7,7 +7,7 @@ import { Task } from '../interfaces/task';
   providedIn: 'root',
 })
 export class TaskService {
-  private apiURL = 'http://localhost:3000';
+  private apiURL = 'https://taskmanager11.herokuapp.com/';
   
   constructor(private http: HttpClient) {}
 
@@ -15,7 +15,7 @@ export class TaskService {
     return this.http.get<Task[]>(this.apiURL)
   }
 
-  add_task(data: Task) {
+  add_task(data: Task): Observable<Task[]> {
     return this.http.post<Task[]>(this.apiURL, data)
   }
 

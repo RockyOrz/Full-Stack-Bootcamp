@@ -1,0 +1,377 @@
+<nav aria-label="navbar" class="navbar navbar-dark bg-primary">
+  <strong>Dashboard</strong>
+  <button
+    style="margin-right: 10px"
+    type="button"
+    class="btn btn-info"
+    data-bs-toggle="modal"
+    data-bs-target="#post_job"
+  >
+    Post Job
+  </button>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <div class="list-group">
+        <a
+          *ngFor="let job of showed_jobs"
+          class="list-group-item list-group-item-action"
+          type="button"
+          (click)="show_detail(job)"
+        >
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ job.title }}</h5>
+            <small>{{ get_days_between(job.updatedAt) }} days ago</small>
+          </div>
+          <p>{{ capitalize(job.location) }}</p>
+          <strong>{{ capitalize(job.company_name) }}</strong>
+          <p class="my-2">{{ get_brief_description(job.description) }}</p>
+        </a>
+      </div>
+
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          <li *ngIf="!first_page" class="page-item">
+            <a
+              type="button"
+              class="page-link"
+              (click)="change_to_previous_page()"
+              tabindex="-1"
+              >Previous</a
+            >
+          </li>
+          <li *ngFor="let page_number of page_iterations" class="page-item">
+            <a class="page-link" (click)="change_page(page_number)">{{
+              page_number
+            }}</a>
+          </li>
+
+          <li *ngIf="!last_page" class="page-item">
+            <a type="button" class="page-link" (click)="change_to_next_page()"
+              >Next</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div *ngIf="show_job_detail" class="col-6">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{ job_detail.title }}</h5>
+        <div class="btn-job-detail">
+          <button
+            type="button"
+            class="btn btn-outline-warning"
+            data-bs-toggle="modal"
+            data-bs-target="#modify-job"
+          >
+            Modify
+          </button>
+
+          <div
+            class="modal fade"
+            id="modify-job"
+            tabindex="-1"
+            aria-labelledby="modify-job"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">
+                    Change Job Detail
+                  </h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <form [formGroup]="job_update_form">
+                    <div class="mb-3">
+                      <label for="title" class="form-label"
+                        ><strong>Job Title</strong></label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="title"
+                        placeholder="{{ job_detail.title }}"
+                        formControlName="title"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="description" class="form-label"
+                        ><strong>Job Description</strong></label
+                      >
+                      <textarea
+                        class="form-control"
+                        id="description"
+                        rows="8"
+                        cols="50"
+                        placeholder="{{ job_detail.description }}"
+                        formControlName="description"
+                      ></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label for="location" class="form-label"
+                        ><strong>Job Location</strong></label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="location"
+                        placeholder="{{ job_detail.location }}"
+                        formControlName="location"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="company_name" class="form-label"
+                        ><strong>Company Name</strong></label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="company_name"
+                        placeholder="{{ job_detail.company_name }}"
+                        formControlName="company_name"
+                      />
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    [disabled]="job_update_form.invalid"
+                    (click)="update_job()"
+                  >
+                    Save changes
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            class="btn btn-outline-danger"
+            data-bs-toggle="modal"
+            data-bs-target="#delete-job-confirm"
+          >
+            Delete
+          </button>
+
+          <div
+            class="modal fade"
+            id="delete-job-confirm"
+            data-bs-keyboard="false"
+            tabindex="-1"
+            aria-labelledby="staticBackdropLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">
+                    You are going to delete this job
+                  </h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    (click)="delete_job(job_detail.job_id)"
+                  >
+                    Delete it
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p>{{ capitalize(job_detail.location) }}</p>
+      <strong>{{ capitalize(job_detail.company_name) }}</strong>
+      <p class="my-2">{{ job_detail.description }}</p>
+
+      <button
+        type="button"
+        class="btn btn-outline-primary"
+        (click)="get_job_applicants()"
+        data-bs-toggle="modal"
+        data-bs-target="#applicant_board"
+      >
+        See applied applicants
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Medal that posting a Job -->
+<div
+  class="modal fade"
+  id="post_job"
+  tabindex="-1"
+  aria-labelledby="post_job"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Post a Job</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="job_post_form">
+          <div class="mb-3">
+            <label for="title" class="form-label"
+              ><strong>Job Title</strong></label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="title"
+              placeholder=""
+              formControlName="title"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label"
+              ><strong>Job Description</strong></label
+            >
+            <textarea
+              class="form-control"
+              id="description"
+              rows="8"
+              cols="50"
+              placeholder=""
+              formControlName="description"
+            ></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="location" class="form-label"
+              ><strong>Job Location</strong></label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="location"
+              placeholder=""
+              formControlName="location"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="company_name" class="form-label"
+              ><strong>Company Name</strong></label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="company_name"
+              placeholder=""
+              formControlName="company_name"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          [disabled]="job_post_form.invalid"
+          (click)="post_job()"
+        >
+          Post
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal that to see applicants -->
+<div class="modal fade" id="applicant_board" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Applicants who applied this position
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Educational Level</th>
+              <th scope="col">Educational Insititute</th>
+              <th scope="col">Professional Field</th>
+              <th scope="col">Years of experience</th>
+              <th scope="col">Download Resume</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let applicant of current_job_applicants">
+              <td>{{ applicant.highest_educational_level }}</td>
+              <td>{{ applicant.educational_insititute }}</td>
+              <td>{{ applicant.professional_field }}</td>
+              <td>{{ applicant.years_professional_exprience }}</td>
+              <td>
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  (click)="download_resume(applicant.resume)"
+                >
+                  Download
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+Coheire
+=======
+
+Users:
+===============
+Applicant, Employer
+
+Functional requirements:
+====================
+1. Two kinds of login for both applicants and employers
+2. Employers can post jobs with specified area
+3. Employers are required to provide basic company info before posting the job.
+4. Applicants can search for jobs with specified area
+5. Applicants are required to provide personal info before applying jobs for accelerating the hiring process
+6. Applicants can apply for jobs with default personal information or upload extra files. 

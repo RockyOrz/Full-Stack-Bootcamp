@@ -1,0 +1,295 @@
+<div class="body">
+  <div class="container-lg">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+      <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path
+          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+        />
+      </symbol>
+    </svg>
+
+    <div class="brand-section">
+      <img
+        class="img-fluid"
+        src="../../../assets/welcome/brand.png"
+        alt="Image not found"
+      />
+
+      <div class="description">
+        <h3>A website that helps you to find easily applied IT related jobs</h3>
+      </div>
+
+      <div class="btn-group d-flex shadow-lg">
+        <button type="button" class="btn btn-success dropdown-toggle caret-off" data-bs-toggle="dropdown" aria-expanded="false">
+          Sign In
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark w-50 text-center shadow-lg">
+          <li><a class="dropdown-item my-1" data-bs-toggle="modal" data-bs-target="#login" (click)="identity = 'applicant'">Applicant</a></li>
+          <li><a class="dropdown-item mb-1" data-bs-toggle="modal" data-bs-target="#login" (click)="identity = 'employer'">Employer</a></li>
+        </ul>
+        
+        <button type="button" class="btn btn-warning dropdown-toggle caret-off" data-bs-toggle="dropdown" aria-expanded="false">
+          Register
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark w-50 text-center shadow-lg">
+          <li><a class="dropdown-item my-1" data-bs-toggle="modal" data-bs-target="#register" (click)="identity = 'applicant'">Applicant</a></li>
+          <li><a class="dropdown-item mb-1" data-bs-toggle="modal" data-bs-target="#register" (click)="identity = 'employer'">Employer</a></li>
+        </ul>
+      </div>
+
+      <div
+        *ngIf="success_register_msg"
+        class="alert alert-success d-flex align-items-center"
+        role="alert"
+      >
+        <svg
+          class="bi flex-shrink-0 me-2"
+          width="24"
+          height="24"
+          role="img"
+          aria-label="Success:"
+        >
+          <use xlink:href="#check-circle-fill" />
+        </svg>
+        <div>Successfully registered, please signin</div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="login"
+      tabindex="-1"
+      aria-labelledby="loginLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="loginLabel">Sign In</h5>
+            <button
+              type="button"
+              #signInClosebtn
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="signInForm">
+              <div class="mb-3">
+                <label for="signinemail" class="form-label">
+                  Email Address</label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="signinemail"
+                  placeholder="example@example.com"
+                  formControlName="email"
+                />
+                <div
+                  *ngIf="
+                    signInForm.get('email')?.touched &&
+                    signInForm.get('email')?.errors?.required
+                  "
+                  class="form-text"
+                >
+                  Please enter your email
+                </div>
+                <div *ngIf="user_not_exist" class="form-text">
+                  Email does not exist
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="signinpassword" class="form-label">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="signinpassword"
+                  placeholder="Please enter your password"
+                  formControlName="password"
+                />
+                <div
+                  *ngIf="
+                    signInForm.get('password')?.touched &&
+                    signInForm.get('password')?.errors?.required
+                  "
+                  class="form-text"
+                >
+                  Please enter your password
+                </div>
+                <div *ngIf="incorrect_password" class="form-text">
+                  Incorrect password
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              (click)="signIn()"
+              [disabled]="signInForm.invalid"
+            >
+              Sign In
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="register"
+      tabindex="-1"
+      aria-labelledby="registerLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="registerLabel">Register</h5>
+            <button
+              type="button"
+              #registerClosebtn
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="registerForm">
+              <div class="mb-3">
+                <label for="fist_name" class="form-label"> First Name </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fist_name"
+                  placeholder="Please enter your first name"
+                  formControlName="first_name"
+                />
+                <div
+                  *ngIf="
+                    registerForm.get('first_name')?.touched &&
+                    registerForm.get('first_name')?.errors?.required
+                  "
+                  class="form-text"
+                >
+                  Please enter your first name
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="last_name" class="form-label"> Last Name </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="last_name"
+                  placeholder="Please enter your last name"
+                  formControlName="last_name"
+                />
+                <div
+                  *ngIf="
+                    registerForm.get('last_name')?.touched &&
+                    registerForm.get('last_name')?.errors?.required
+                  "
+                  class="form-text"
+                >
+                  Please enter your last name
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="email" class="form-label"> Email Address </label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="example@example.com"
+                  formControlName="email"
+                />
+                <div
+                  *ngIf="
+                    registerForm.get('email')?.touched &&
+                    registerForm.get('email')?.errors?.required
+                  "
+                  class="form-text"
+                >
+                  Please enter your email
+                </div>
+                <div *ngIf="duplicate_email" class="form-text">
+                  Email exists
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="password" class="form-label"> Password </label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  placeholder="Please enter your password"
+                  formControlName="password"
+                />
+                <div
+                  *ngIf="
+                    registerForm.get('password')?.touched &&
+                    registerForm.get('password')?.errors?.required
+                  "
+                  class="form-text"
+                >
+                  Please enter your pasword
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="confirm_password" class="form-label">
+                  Confirm Password
+                </label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="confirm_password"
+                  placeholder="Please enter your password again"
+                  formControlName="confirm_password"
+                />
+                <div
+                  *ngIf="
+                    registerForm.get('confirm_password')?.touched &&
+                    registerForm.get('confirm_password')?.errors?.required
+                  "
+                  class="form-text"
+                >
+                  Please enter your password again
+                </div>
+                <div
+                  *ngIf="
+                  registerForm.get('password')?.touched &&
+                  registerForm.get('confirm_password')?.touched &&
+                  registerForm.get('password')?.value != registerForm.get('confirm_password')?.value
+                  "
+                  class="form-text"
+                >
+                  The passwords does not match
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              (click)="register()"
+              [disabled]="registerForm.invalid"
+            >
+              Register
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

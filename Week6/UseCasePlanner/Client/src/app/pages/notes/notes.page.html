@@ -1,0 +1,15 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Notes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-button (click)="changeTheme('autumn')" expand="block" color="medium">Pink</ion-button>
+<ion-button (click)="changeTheme('night')" expand="block" color="medium">grey</ion-button>
+<ion-button (click)="changeTheme('neon')" expand="block" color="medium">purple</ion-button>
+<ion-button (click)="changeTheme(autumn)" expand="block" color="medium">Pink</ion-button>
+</ion-content>

@@ -1,0 +1,57 @@
+.body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../../../assets/welcome/welcome.jpg");
+  background-size: cover;
+  position: absolute;
+}
+
+button {
+  font-family: monospace;
+}
+
+label {
+  font-family: monospace;
+}
+
+.brand-section {
+  margin: 0 auto;
+  padding-top: 350px; 
+  width: 45%;
+  text-align: center;
+}
+
+.description {
+  margin-top: 30px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #8d99ae;
+  text-shadow: 2px 2px #d3d2d7;
+}
+
+.btn-group {
+  margin-top: 40px;
+}
+
+.caret-off::before {
+  display: none;
+}
+.caret-off::after {
+  display: none;
+}
+
+.dropdown-item {
+  cursor: pointer;
+}
+
+.form-text {
+  color: #dc2f02;
+}
+
+.alert {
+  margin: 40px auto;
+  width: 60%;
+  text-align: center;
+  
+}
